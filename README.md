@@ -5,17 +5,23 @@
 - The MySQL service is managed by `quiz_database/startup.sh` and runs on the configured port (default 5000 in this workspace).
 - A connection helper is generated at `quiz_database/db_connection.txt` after running `startup.sh`.
 
-## How to create schema and seed data
+For full database initialization instructions (running schema.sql and seed.sql), see:
+- quiz_database/README.md
+
+## How to create schema and seed data (quick reference)
 
 1) Start MySQL (if not already running)
    bash quiz_database/startup.sh
 
-2) Load schema  
-   Uses the connection string saved by `startup.sh`:
+2) Load schema (tables, FKs, indexes)
    $(cat quiz_database/db_connection.txt) < quiz_database/schema.sql
 
 3) Seed sample quiz data
    $(cat quiz_database/db_connection.txt) < quiz_database/seed.sql
+
+Alternatively, you can use your own MySQL instance and run:
+   mysql -u <USER> -p -h <HOST> -P <PORT> myapp < quiz_database/schema.sql
+   mysql -u <USER> -p -h <HOST> -P <PORT> myapp < quiz_database/seed.sql
 
 ## How other containers connect
 
